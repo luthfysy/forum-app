@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Sesuaikan dengan versi Node.js Anda (misal 18, 20, dll.)
+          node-version: '20' 
           cache: 'npm'
 
       - name: Install dependencies
