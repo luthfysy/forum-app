@@ -1,0 +1,86 @@
+# .github/workflows/ci.yml
+name: CI/CD Forum App
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Sesuaikan dengan versi Node.js Anda (misal 18, 20, dll.)
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Unit & Integration Tests
+        run: npm test
+
+      - name: Install Cypress (for E2E)
+        run: npm install cypress --save-dev
+
+      - name: Run E2E Tests
+        run: npm run e2e:ci
+        env:
+          CI: true
+          # REACT_APP_API_BASE_URL: https://forum-api.dicoding.dev/v1 # Jika API URL Anda adalah hardcoded ini, atau dari .env
+          # Jika API URL Anda berasal dari environtment variable (misal dari Vercel/GitHub Secret), tambahkan di sini
+          # REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL }}
+          # Pastikan variabel lingkungan yang dibutuhkan aplikasi saat E2E testing ada.
+
+  deploy:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (for build)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies (for build)
+        run: npm ci
+
+      - name: Build React App
+        run: npm run build
+        env:
+          # Pastikan variabel lingkungan yang dibutuhkan aplikasi saat build untuk production ada.
+          # Misalnya, jika Anda menggunakan REACT_APP_API_BASE_URL=https://forum-api.dicoding.dev/v1
+          # di .env.production atau di Vercel env vars, Anda tidak perlu menuliskannya di sini
+          # karena Vercel akan otomatis meneruskannya saat build.
+          # Namun, jika Anda menggunakan secrets dari GitHub Actions untuk build,
+          # Anda perlu menuliskannya di sini:
+          # REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL }}
+          CI: false
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          # vercel-args: '--prod' # Opsional: uncomment jika ingin memaksa deploy ke production alias
+        env:
+          # Jika ada environment variable Vercel yang spesifik untuk runtime, konfigurasikan di dashboard Vercel
+          # Bukan di sini. Ini hanya untuk build time env vars yang dibutuhkan oleh Vercel Action.
+          # RECAP: Environment variables for Vercel are best managed directly in the Vercel project settings.
+          # Only put sensitive env vars here if they are ONLY needed during the GitHub Actions build step itself
+          # and not directly by the Vercel build process.

@@ -2,27 +2,56 @@
   "name": "forum-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module", 
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.6.3", 
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test", 
+    "eject": "react-scripts eject",
+    "e2e": "cypress open",     
+    "e2e:ci": "cypress run"      
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "eslint:recommended", 
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "plugins": [
+      "react",
+      "react-hooks",
+      "jsx-a11y",
+      "jest" 
+    ],
+    "rules": {
+      "react/react-in-jsx-scope": "off", 
+      "react/prop-types": "warn",       
+      "react/jsx-props-no-spreading": "off", 
+      "react/forbid-prop-types": "off",      
+      "no-alert": "off",                     
+      "max-len": ["error", { "code": 120, "ignoreComments": true }], 
+      "no-unused-vars": "warn"
+    },
+    "env": {
+      "jest/globals": true 
+    }
   },
   "browserslist": {
     "production": [
@@ -35,5 +64,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  
+  },
+  
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "cypress": "^13.x.x", 
+    "@faker-js/faker": "^8.x.x", 
+    "eslint-plugin-jest": "^27.x.x"
+
   }
 }
