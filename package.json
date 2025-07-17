@@ -2,7 +2,7 @@
   "name": "forum-app",
   "version": "0.1.0",
   "private": true,
-  "type": "module", 
+  "type": "module",
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "@testing-library/dom": "^10.4.0",
@@ -13,23 +13,23 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.6.3", 
+    "react-router-dom": "^7.6.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test", 
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "e2e": "cypress open",     
-    "e2e:ci": "cypress run"      
+    "e2e": "cypress open",
+    "e2e:ci": "cypress run"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest",
-      "eslint:recommended", 
+      "eslint:recommended",
       "plugin:react/recommended",
       "plugin:react-hooks/recommended",
       "plugin:jsx-a11y/recommended"
@@ -38,20 +38,29 @@
       "react",
       "react-hooks",
       "jsx-a11y",
-      "jest" 
+      "jest"
     ],
     "rules": {
-      "react/react-in-jsx-scope": "off", 
-      "react/prop-types": "warn",       
-      "react/jsx-props-no-spreading": "off", 
-      "react/forbid-prop-types": "off",      
-      "no-alert": "off",                     
-      "max-len": ["error", { "code": 120, "ignoreComments": true }], 
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "warn",
+      "react/jsx-props-no-spreading": "off",
+      "react/forbid-prop-types": "off",
+      "no-alert": "off",
+      "max-len": [
+        "error",
+        {
+          "code": 120,
+          "ignoreComments": true
+        }
+      ],
       "no-unused-vars": "warn",
-      "linebreak-style": ["error", "lf"]
+      "linebreak-style": [
+        "error",
+        "lf"
+      ]
     },
     "env": {
-      "jest/globals": true 
+      "jest/globals": true
     }
   },
   "browserslist": {
@@ -65,19 +74,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  
   },
-  
   "devDependencies": {
+    "@faker-js/faker": "^8.x.x",
+    "cypress": "^13.17.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jest": "^27.x.x",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "cypress": "^13.x.x", 
-    "@faker-js/faker": "^8.x.x", 
-    "eslint-plugin-jest": "^27.x.x"
-
+    "eslint-plugin-react-hooks": "^4.6.2"
   }
 }
