@@ -35,8 +35,6 @@ jobs:
       # Saya akan mengasumsikan Anda akan menambahkan 'start-server-and-test'
       # atau menjalankan server di background seperti yang saya sarankan sebelumnya.
       # Jika tidak, Cypress akan gagal karena tidak menemukan aplikasi berjalan.
-      - name: Install Cypress (for E2E)
-        run: npm install cypress --save-dev
 
       - name: Run E2E Tests
         run: npm run e2e:ci
@@ -72,9 +70,9 @@ jobs:
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-token: ${{ secrets.NHywseAex4ODXOAvNb1H0vWf }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-project-id: ${{ secrets.prj_uHbKmWg5hLLnkwD9xElNc5RYxJct }}
           vercel-args: '--prod' # Aktifkan ini untuk deploy otomatis ke production alias
         # Tidak perlu blok 'env:' di sini jika tidak ada variabel khusus untuk Vercel Action itu sendiri.
         # Variabel lingkungan untuk aplikasi React (saat build di Vercel)
