@@ -70,7 +70,7 @@ describe('Login Flow E2E Test', () => {
     cy.wait('@getProfileApiRequest');
 
     // Memverifikasi navigasi ke halaman utama
-    cy.url().should('eq', 'http://localhost:3000/'); // Sesuaikan URL
+    cy.url().should('eq', 'http://localhost:9999/'); // Sesuaikan URL
     cy.contains('Forum App').should('be.visible'); // Contoh elemen di halaman utama
     cy.contains('Cypress Test User').should('be.visible'); // Memastikan nama user muncul di header
   });
