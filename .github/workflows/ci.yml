@@ -70,9 +70,9 @@ jobs:
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
-          vercel-token: ${{ secrets.NHywseAex4ODXOAvNb1H0vWf }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.prj_uHbKmWg5hLLnkwD9xElNc5RYxJct }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: '--prod' # Aktifkan ini untuk deploy otomatis ke production alias
         # Tidak perlu blok 'env:' di sini jika tidak ada variabel khusus untuk Vercel Action itu sendiri.
         # Variabel lingkungan untuk aplikasi React (saat build di Vercel)
