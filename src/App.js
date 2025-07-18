@@ -16,7 +16,7 @@ function App() {
   const authUser = useSelector((state) => state.auth);
   // isLoading tidak lagi digunakan secara langsung di JSX App.js,
   // komponen LoadingBar sendiri yang mengakses state.loading.
-  // const isLoading = useSelector((state) => state.loading); // Dihapus karena tidak terpakai langsung di sini
+  // const isLoading = useSelector((state) => state.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
